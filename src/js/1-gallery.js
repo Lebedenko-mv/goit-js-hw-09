@@ -65,19 +65,18 @@ const images = [
       description: 'Lighthouse Coast Sea',
     },
   ];
+  
 const gallery = document.querySelector('.gallery');
-
-const markup = images
+console.log(gallery);
+gallery.innerHTML = images
   .map(({ preview, original, description }) => `
     <li class="gallery-item">
-      <a class="gallery-link" href="${original}">
-        <img src="${preview}" alt="${description}" />
+      <a href="${original}">
+        <img src="${preview}" alt="${description}">
       </a>
     </li>
   `)
   .join('');
-
-gallery.innerHTML = markup;
 
 new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
