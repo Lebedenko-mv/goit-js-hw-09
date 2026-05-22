@@ -1,6 +1,5 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
 const images = [
     {
       preview:
@@ -66,40 +65,21 @@ const images = [
       description: 'Lighthouse Coast Sea',
     },
   ];
-
-  const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
 const markup = images
-  .map(
-    ({ preview, original, description }) => `
-      <li class="gallery-item">
-        <a class="gallery-link" href="${original}">
-          <img
-            class="gallery-image"
-            src="${preview}"
-            data-source="${original}"
-            alt="${description}"
-          />
-        </a>
-      </li>
-    `
-  )
+  .map(({ preview, original, description }) => `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${original}">
+        <img src="${preview}" alt="${description}" />
+      </a>
+    </li>
+  `)
   .join('');
 
 gallery.innerHTML = markup;
 
-gallery.addEventListener('click', (event) => {
-  event.preventDefault();
-
-  const target = event.target;
-
-  if (target.nodeName !== 'IMG') return;
-
-  const largeImageURL = target.dataset.source;
-
-  const instance = basicLightbox.create(`
-    <img src="${largeImageURL}" width="800" height="600">
-  `);
-
-  instance.show();
+new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });
