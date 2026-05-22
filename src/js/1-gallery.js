@@ -72,7 +72,7 @@ gallery.innerHTML = images
   .map(({ preview, original, description }) => `
     <li class="gallery-item">
       <a href="${original}">
-        <img src="${preview}" alt="${description}">
+        <img class="gallery-image"s src="${preview}" alt="${description}">
       </a>
     </li>
   `)
